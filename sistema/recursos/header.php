@@ -63,6 +63,9 @@
         <li class="nav-item">
           <a class="nav-link" id="btn_citas" href="#">Citas</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" id="btn_cerrar_sesion" href="../modulos/ControlCerrarSesion.php">Cerrar sesión</a>
+        </li>
       </ul>
     </div>
   </div>
