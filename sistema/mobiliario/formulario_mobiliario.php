@@ -19,29 +19,29 @@
               <h3 class="mb-4">Registro de Mobiliario</h3>
               <div class="col-12">
                 <div class="mb-3">
-                  <label for="nombreMob" class="form-label">Nombre de proveedor</label>
-                  <input type="text" class="form-control" id="nombreMob" aria-describedby="emailHelp">
+                  <label for="proveedorMob" class="form-label">Nombre de proveedor</label>
+                  <input type="text" class="form-control" id="proveedorMob" aria-describedby="emailHelp">
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="mb-3">
-                  <label for="costoMob" class="form-label">Producto</label>
-                  <input type="number" class="form-control" id="costoMob" aria-describedby="emailHelp" placeholder="">
+                  <label for="productoMob" class="form-label">Producto</label>
+                  <input type="number" class="form-control" id="productoMob" aria-describedby="emailHelp" placeholder="">
                 </div>
               </div>
 
               <div class="col-3">
                 <div class="mb-3">
-                    <label for="categoriaMob" class="form-label">Precio</label>
-                    <input type="number" class="form-control" id="categoriaMob" aria-describedby="emailHelp" placeholder="">
+                    <label for="precioMob" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="precioMob" aria-describedby="emailHelp" placeholder="">
                 </div>
               </div>
 
               <div class="col-3">
                 <div class="mb-3">
-                  <label for="cantidadMob" class="form-label">En stock</label>
-                  <input type="number" class="form-control" id="cantidadMob" placeholder="">
+                  <label for="stockMob" class="form-label">En stock</label>
+                  <input type="number" class="form-control" id="stockMob" placeholder="">
                 </div>
             </div>
 
