@@ -20,53 +20,18 @@
           <div class="row">
             <form action="/action_page.php">
               <h3 class="mb-4">Registro de Citas</h3>
+              
               <div class="col-12">
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Fecha de cita </label>
-                  <input type="date" id="birthday" name="birthday">
+                  <label for="fechaCita" class="form-label">Fecha de cita </label>
+                  <input type="date" id="fechaCita" name="fecha">
                 </div>
               </div>
-
 
 
               <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Motivo de la cita</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-
-              <div class="col-12">
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">La cita es para:</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Mí
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Conocido
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-12">
-                <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Menor de edad
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Mayor de edad
-                    </label>
-                  </div>
-                </div>
+                <label for="motivoCita" class="form-label">Motivo de la cita</label>
+                <textarea class="form-control" id="motivoCita" rows="3"></textarea>
               </div>
 
 
