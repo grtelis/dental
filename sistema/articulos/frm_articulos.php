@@ -30,6 +30,7 @@
             "nombProd" value="<?php echo isset($articulo)?$articulo->arti_nombre:"";?>">
           </div>
         </div>
+        
         <div class="col-12">
           <div class="mb-3">
              <label for="descripcion" class="form-label">Descripción</label>
