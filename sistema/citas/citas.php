@@ -1,92 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Tabla de citas</title>
-</head>
-<body>
-    <main>
-        <!-- Tabla con bootstrap de citas para agendar dentro de la clínica dental -->
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre del paciente</th>
-                    <th scope="col">Fecha de la cita</th>
-                    <th scope="col">Hora de la cita</th>
-                    <th scope="col">Tipo de cita</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Fernando Cuevas</td>
-                    <td>13 de abril del 2001</td>
-                    <td>8:30 pm</td>
-                    <td>Extracción</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Julieta Venegas</td>
-                    <td>13 de Mayo del 2024</td>
-                    <td>8:30 pm</td>
-                    <td>Extracción</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Regina Villareal</td>
-                    <td>13 de abril del 2018</td>
-                    <td>8:30 pm</td>
-                    <td>Extracción</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Fernando Rubio</td>
-                    <td>13 de Septiembre del 2044</td>
-                    <td>8:30 pm</td>
-                    <td>Extracción</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alicia Gomez</td>
-                    <td>15 de mayo del 2022</td>
-                    <td>8:30 pm</td>
-                    <td>Extracción</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Carlota Mora</td>
-                    <td>13 de Febrero del 2005</td>
-                    <td>8:30 pm</td>
-                    <td>Extracción</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
+<?php
+  include('../../clases/BD.php');
+  include('../../clases/Citas.php');
+
+  $obj_cita = new Citas();
+  $total_registros  = $obj_citas->totalRegistros();
+  $total= $total_registros->total;
+  $resultados_por_pagina = 5;
 
 
-        </table>
 
-    </main>
-    
-</body>
-</html>
+  // Calcula el número total de páginas
+$total_paginas = ceil($total / $resultados_por_pagina);
+
+if (isset($_POST['id'])) {
+  $desplazamiento = ($_POST['id'] - 1) * $resultados_por_pagina;
+    $arr_cita = $obj_cita->buscarTodos($desplazamiento, $resultados_por_pagina);
+}else{
+   $arr_cita = $obj_citas->buscarTodos(0,5);
+}
+
+?>
+
+ <section id="tabla-citas" class="mt-5 mb-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <h3>Citas</h3>
+      </div>
+
+      <div class="col center">
+        <button type="button" class="btn btn-primary" id="btn-registro-citas">Agregar Cita</button>
+      </div>
+      
+      <div class="table-responsive">
+          <table class="table">
+              <thead class="table-light">
+                <tr>
+                  <td><b>#Id</b></td>
+                  <td><b>Nombre del paciente</b></td>
+                  <td><b>Fecha de la cita</b></td>
+                  <td><b>Hora de la cita</b></td>
+                  <td><b>Motivo de la cita</b></td>
+                </tr>
+              </thead>
+              <tbody>
+
+              	<?php foreach ($arr_cita as $citas) { ?>
+                <tr>
+	                 <td><?php echo $citas['id_cita']; ?></td>
+	                 <td><?php echo $citas['nombrepa']; ?></td>
+	                 <td><?php echo $citas['fechacita']; ?></td>
+	                 <td><?php echo $citas['horacita']; ?></td>
+                     <td><?php echo $citas['motivocita']; ?></td>
+	                  <td>
+	                    <p ><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="actualizarCita(<?php echo $citas['id_cita'] ?>)">Editar</a></p>
+	                    <p><a type="button" class="btn btn-primary btn-table" title="Eliminar" onclick="eliminarCita(<?php echo $citas['id_cita'] ?>, '<?php echo $citas['fechacita'] ?>')">Eliminar</a></p>
+	                    <p><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="consultarCita(<?php echo $citas['id_cita'] ?>)">Detalle</a></p>
+	                  </td>
+                </tr>
+                <?php } ?>
+              </tbody>
+
+     
+          </table>
+          <?php
+         
+         echo '<nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item';
+          if (!isset($_POST['id']) || $_POST['id'] == 1) {
+  
+            echo  ' disabled';
+  
+          }
+
+          $anterior = !isset($_POST['id']) ? 1 : $_POST['id'] - 1;
+
+          echo '">
+                  <a class="page-link" role="button" onclick="consultarmobiliarios(' . $anterior . ')" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>';
+
+         for ($i = 1; $i <= $total_paginas; $i++) {
+          
+          echo '<li id="'.$i.'" class="page-item';
+
+          if ((!isset($_POST['id']) && $i == 1) || $i == $_POST['id']) {
+
+            echo ' active';
+
+         } 
+
+         echo '"><a class="page-link" role="button" onclick="consultarmobiliarios(' . $i . ')">' . $i . '</a></li>';
+
+        }
+
+        echo '<li class="page-item';
+        
+        
+        if ($total_paginas == 1 || $_POST['id'] == $total_paginas) {
+
+          echo ' disabled';
+        }
+        
+        $siguiente = !isset($_POST['id']) ? 2 : $_POST['id'] + 1;
+
+        echo '">
+        <a class="page-link" role="button" onclick="consultarmobiliarios(' . $siguiente . ')" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      </ul></nav>';
+  ?>
+      </div>
+    </div>  
+  </div>
+</section>
+<script src="../sistema/mobiliario/mobiliario.js"></script>

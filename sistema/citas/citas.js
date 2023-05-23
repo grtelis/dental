@@ -1,6 +1,207 @@
 $(document).ready(function () {
-    $("#btn-registro-articulo").click(function () {
-      $("#container").load("../sistema/articulos/frm_articulos.php");
-      $("html, body").animate({ scrollTop: 0 }, 0);
-    });
+  $("#btn-registro-citas").click(function () {
+    $("#container").load("../sistema/citas/citas.php");
+    $("html, body").animate({ scrollTop: 0 }, 0);
+  });
 });
+
+// Validar el formulario
+function validarFormularioEvento() {
+
+  if ($("#nombrePa").val() == "") {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    document.getElementById("nombrePa").focus();
+    alertify.error("Debe ingresar el nombre del proveedor");
+    return false;
+  }
+
+
+   if ($("#productoMob").val() == "") {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    document.getElementById("productoMob").focus();
+    alertify.error("Debe ingresar la descripción");
+    return false;
+  }
+
+
+
+  if ($("#precioMob").val() == 0) {
+    alertify.error("Debe indicar el precio");
+    $("html, body").animate({ scrollTop: 200 }, "slow");
+    document.getElementById("precioMob").focus();
+    return false;
+  }
+
+
+  if ($("#stockMob").val() == 0) {
+    alertify.error("Debe indicar el stock");
+    $("html, body").animate({ scrollTop: 200 }, "slow");
+    document.getElementById("stockMob").focus();
+    return false;
+  }
+  
+  return true;
+}
+
+
+// Registrar articlo
+$("#btn-agregar-mobiliario").click(function () {
+
+if (validarFormularioEvento()) {
+    var parametros = new FormData($("#form_mobiliario")[0]);
+    console.log(parametros);
+    $.ajax({
+        data: parametros,
+        url: "../modulos/Control_Mobiliario.php",
+        type: "POST",
+        contentType: false,
+        processData: false,
+        success: function(response)
+        {
+          console.log(response);
+          if (response == 1) {
+            alertify.success("El registro del mobiliario se actualizó correctamente");
+            setTimeout(function () {
+              $("html, body").animate({ scrollTop: 0 }, 0);
+              $("#container").load(
+                "../sistema/mobiliario/mobiliario.php"
+              );
+            }, 0);
+          } else {
+            alertify.error("Hubo un problema al registrar los datos del evento");
+          }
+        }
+    });
+    }
+});
+
+
+// Actualizar evento
+function actualizarMobiliario(id) {
+  var datos = {
+    id: id,
+    CRUD: 1,
+  };
+
+  $.ajax({
+    data: datos,
+    type: "POST",
+    url: "../sistema/mobiliario/formulario_mobiliario.php",
+    success: function (data) {
+      $("html, body").animate({ scrollTop: 0 }, 0);
+      $("#container").html(data);
+    },
+  });
+}
+
+$(document).ready(function () {
+  $("#btn-actualizar-mobiliario").click(function () {
+    
+      var parametros = new FormData($("#form_mobiliario")[0]);
+      $.ajax({
+        data: parametros,
+        url: "../modulos/Control_Mobiliario.php",
+        type: "POST",
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+          console.log(respuesta);
+          if (respuesta == 1) {
+            alertify.success("El registro del mobiliario se actualizó correctamente.");
+            setTimeout(function () {
+              $("html, body").animate({ scrollTop: 0 }, 0);
+              $("#container").load(
+                "../sistema/mobiliario/mobiliario.php"
+              );
+            }, 0);
+          } else {
+            alertify.error("Hubo un problema al actualizar los datos del mobiliario.");
+          }
+        },
+      });
+      return false;
+  });
+})
+
+
+
+// Eliminar evento
+function eliminarMobiliario(id,mobiliario) {
+  var mensaje = "¿Esta seguro de eliminar el mobiliario ";
+  mensaje = mensaje.concat(mobiliario.bold());
+  mensaje = mensaje.concat("?");
+
+  var titulo = "Eliminar Mobiliario";
+  alertify.confirm(
+    titulo,
+    mensaje,
+    function () {
+      var dml = "delete";
+      var datos = {
+        id: id,
+        dml: dml,
+      };
+      $.ajax({
+        data: datos,
+        type: "POST",
+        url: "../modulos/Control_Mobiliario.php",
+        success: function (respuesta) {
+          console.log(respuesta);
+          if (respuesta == 1) {
+            alertify.success("Se elimino de manera correcta el mobiliario");
+            setTimeout(function () {
+              $("html, body").animate({ scrollTop: 0 }, 0);
+              $("#container").load(
+                "../sistema/mobiliario/mobiliario.php"
+              );
+            }, 100);
+          } else {
+            alertify.error("Hubo un problema al eliminar el mobiliario");
+          }
+        },
+      });
+    },
+    function () {
+      alertify.confirm().close();
+    }
+  );
+}
+
+
+// Consultar evento
+function consultarMobiliario(id) {
+  var datos = {
+    id: id,
+    CRUD: 0,
+   };
+
+  $.ajax({
+    data: datos,
+    type: "POST",
+    url: "../sistema/mobiliario/formulario_mobiliario.php",
+    success: function (data) {
+      $("html, body").animate({ scrollTop: 0 }, 0);
+      $("#container").html(data);
+    },
+  });
+}
+
+
+function consultarMobiliario(id) {
+  var datos = {
+    id: id,
+    CRUD: 0,
+   };
+
+  $.ajax({
+    data: datos,
+    type: "POST",
+    url: "../sistema/mobiliario/mobiliario.php",
+    success: function (data) {
+      $("html, body").animate({ scrollTop: 0 }, 0);
+      $("#container").html(data);
+    },
+  });
+}
+
+// $(document).ready(consultarArticulos(1));
