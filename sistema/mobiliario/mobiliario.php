@@ -48,10 +48,10 @@ if (isset($_POST['id'])) {
               	<?php foreach ($arr_mobiliario as $mobiliario) { ?>
                 <tr>
 	                 <td><?php echo $mobiliario['id']; ?></td>
-	                 <td><?php echo $mobiliario['proveedormob']; ?></td>
 	                 <td><?php echo $mobiliario['productomob']; ?></td>
 	                 <td><?php echo $mobiliario['preciomob']; ?></td>
 	                 <td><?php echo $mobiliario['stockmob']; ?></td>
+                     <td><?php echo $mobiliario['proveedormob']; ?></td>
 	                  <td>
 	                    <p ><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="actualizarMobiliario(<?php echo $mobiliario['id'] ?>)">Editar</a></p>
 	                    <p><a type="button" class="btn btn-primary btn-table" title="Eliminar" onclick="eliminarMobiliario(<?php echo $mobiliario['id'] ?>, '<?php echo $mobiliario['productomob'] ?>')">Eliminar</a></p>
@@ -117,4 +117,4 @@ if (isset($_POST['id'])) {
     </div>  
   </div>
 </section>
-<script src="../sistema/mobiliarios/mobiliarios.js"></script>
+<script src="../sistema/mobiliario/mobiliario.js"></script>

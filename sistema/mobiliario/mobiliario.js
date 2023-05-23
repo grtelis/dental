@@ -49,6 +49,7 @@ $("#btn-agregar-mobiliario").click(function () {
 
 if (validarFormularioEvento()) {
     var parametros = new FormData($("#form_mobiliario")[0]);
+    console.log(parametros);
     $.ajax({
         data: parametros,
         url: "../modulos/Control_Mobiliario.php",
@@ -76,7 +77,7 @@ if (validarFormularioEvento()) {
 
 
 // Actualizar evento
-function actualizarArticulo(id) {
+function actualizarMobiliario(id) {
   var datos = {
     id: id,
     CRUD: 1,
@@ -106,7 +107,7 @@ $(document).ready(function () {
         success: function (respuesta) {
           console.log(respuesta);
           if (respuesta == 1) {
-            alertify.success("El registro del articulo se actualizó correctamente.");
+            alertify.success("El registro del mobiliario se actualizó correctamente.");
             setTimeout(function () {
               $("html, body").animate({ scrollTop: 0 }, 0);
               $("#container").load(
@@ -114,7 +115,7 @@ $(document).ready(function () {
               );
             }, 0);
           } else {
-            alertify.error("Hubo un problema al actualizar los datos del articulo.");
+            alertify.error("Hubo un problema al actualizar los datos del mobiliario.");
           }
         },
       });
@@ -125,12 +126,12 @@ $(document).ready(function () {
 
 
 // Eliminar evento
-function eliminarArticulo(id,articulo) {
-  var mensaje = "¿Esta seguro de eliminar el articulo ";
-  mensaje = mensaje.concat(articulo.bold());
+function eliminarMobiliario(id,mobiliario) {
+  var mensaje = "¿Esta seguro de eliminar el mobiliario ";
+  mensaje = mensaje.concat(mobiliario.bold());
   mensaje = mensaje.concat("?");
 
-  var titulo = "Eliminar Articulo";
+  var titulo = "Eliminar Mobiliario";
   alertify.confirm(
     titulo,
     mensaje,
@@ -147,7 +148,7 @@ function eliminarArticulo(id,articulo) {
         success: function (respuesta) {
           console.log(respuesta);
           if (respuesta == 1) {
-            alertify.success("Se elimino de manera correcta el articulo");
+            alertify.success("Se elimino de manera correcta el mobiliario");
             setTimeout(function () {
               $("html, body").animate({ scrollTop: 0 }, 0);
               $("#container").load(
@@ -155,7 +156,7 @@ function eliminarArticulo(id,articulo) {
               );
             }, 100);
           } else {
-            alertify.error("Hubo un problema al eliminar el articulo");
+            alertify.error("Hubo un problema al eliminar el mobiliario");
           }
         },
       });
@@ -168,7 +169,7 @@ function eliminarArticulo(id,articulo) {
 
 
 // Consultar evento
-function consultarArticulo(id) {
+function consultarMobiliario(id) {
   var datos = {
     id: id,
     CRUD: 0,
@@ -186,7 +187,7 @@ function consultarArticulo(id) {
 }
 
 
-function consultarArticulos(id) {
+function consultarMobiliario(id) {
   var datos = {
     id: id,
     CRUD: 0,

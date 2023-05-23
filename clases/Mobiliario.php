@@ -5,8 +5,8 @@ class Mobiliario
     function agregarMobiliario($proveedorMob, $productoMob, $precioMob, $stockMob)
     {
         $SQL_Ins_Mobiliario =
-            "INSERT INTO Mobiliario(proveedormob, productomob, preciomob, stockmob)
-         VALUES ('$proveedorMob', $productoMob, $precioMob, $stockMob)";
+            "INSERT INTO Mobiliario(productomob, preciomob, stockmob, proveedormob)
+         VALUES ('$productoMob', '$precioMob', '$stockMob', $proveedorMob)";
 
         $bd = new BD();
         $bd->abrirBD();
@@ -65,8 +65,8 @@ class Mobiliario
     function buscarMobiliario($id)
     {
         $SQL_Bus_Mobiliario =
-            "SELECT id, proveedormob, productomob, preciomob, stockmob
-          FROM Mobiliario WHERE id = $id;
+            "SELECT id, productomob, preciomob, stockmob, proveedormob, prove_id_prove
+          FROM Mobiliario, proveedor WHERE prove_id_prove = proveedormob AND id = $id;
       ";
 
         $bd = new BD();

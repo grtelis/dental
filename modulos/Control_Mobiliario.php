@@ -8,25 +8,25 @@
  
   if($_POST['dml'] == 'insert')
   {
-   $proveedorMob = $_POST['proveedormob'];
-   $productoMob = $_POST['productomob'];
-   $precioMob = $_POST['preciomob'];
-   $stockMob = $_POST['stockmob'];
-   $obj_Mobiliario->agregarMobiliario($proveedorMob, $productoMob, $precioMob, $stockMob);
+   $productoMob = $_POST['productoMob'];
+   $precioMob = $_POST['precioMob'];
+   $stockMob = $_POST['stockMob'];
+   $proveedorMob = $_POST['proveedorMob'];
+   $obj_Mobiliario->agregarMobiliario($productoMob, $precioMob, $stockMob, $proveedorMob);
 
    echo 1;
   }else if ($_POST['dml'] == 'update') {
-    $proveedorMob = $_POST['proveedormob'];
-    $productoMob = $_POST['productomob'];
-    $precioMob = $_POST['preciomob'];
-    $stockMob = $_POST['stockmob'];
-    $obj_Mobiliario->modificarMobiliario($proveedorMob, $productoMob, $precioMob, $stockMob)
+    $productoMob = $_POST['productoMob'];
+    $precioMob = $_POST['precioMob'];
+    $stockMob = $_POST['stockMob'];
+    $proveedorMob = $_POST['proveedorMob'];
+    $obj_Mobiliario->modificarMobiliario($productoMob, $precioMob, $stockMob, $proveedorMob);
     echo 1;
   }elseif($_POST['dml'] == 'delete')
   {
     $mobiliario = $_POST['id'];
 
-    $obj_Mobiliario->eliminarMobiliario($mobiliario)
+    $obj_Mobiliario->eliminarMobiliario($mobiliario);
     echo 1;
   }
 
