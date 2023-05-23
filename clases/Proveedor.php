@@ -76,5 +76,25 @@
       return ($transaccion_1->traerObjeto(0));
     }
 
+    function buscarProveedor($idProveedor){
+
+      $SQL_Buscar_Proveedor = 
+      "SELECT prove_id_prove,prove_descrip, 
+      precio,nacionalidad, 
+      numero_telefono, 
+      correo_electronico, 
+      ubicacion
+          FROM proveedor where prove_id_prove = $idProveedor;
+      ";
+  
+      $bd = new BD();
+      $bd->abrirBD();
+      $transaccion_1 = new Transaccion($bd->conexion);
+      $transaccion_1->enviarQuery($SQL_Buscar_Proveedor);
+      $obj_Curso = $transaccion_1->traerObjeto(0);
+      $bd->cerrarBD();
+      return ($transaccion_1->traerObjeto(0));
+    }
+
   }
 ?>
