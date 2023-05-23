@@ -2,8 +2,8 @@
   include('../../clases/BD.php');
   include('../../clases/Citas.php');
 
-  $obj_cita = new Citas();
-  $total_registros  = $obj_citas->totalRegistros();
+  $obj_Cita = new Citas();
+  $total_registros  = $obj_Cita->totalRegistros();
   $total= $total_registros->total;
   $resultados_por_pagina = 5;
 
@@ -14,9 +14,9 @@ $total_paginas = ceil($total / $resultados_por_pagina);
 
 if (isset($_POST['id'])) {
   $desplazamiento = ($_POST['id'] - 1) * $resultados_por_pagina;
-    $arr_cita = $obj_cita->buscarTodos($desplazamiento, $resultados_por_pagina);
+    $arr_cita = $obj_Cita->buscarTodos($desplazamiento, $resultados_por_pagina);
 }else{
-   $arr_cita = $obj_citas->buscarTodos(0,5);
+   $arr_cita = $obj_Cita->buscarTodos(0,5);
 }
 
 ?>
@@ -47,15 +47,15 @@ if (isset($_POST['id'])) {
 
               	<?php foreach ($arr_cita as $citas) { ?>
                 <tr>
-	                 <td><?php echo $citas['id_cita']; ?></td>
+	                 <td><?php echo $citas['id']; ?></td>
 	                 <td><?php echo $citas['nombrepa']; ?></td>
 	                 <td><?php echo $citas['fechacita']; ?></td>
 	                 <td><?php echo $citas['horacita']; ?></td>
                      <td><?php echo $citas['motivocita']; ?></td>
 	                  <td>
-	                    <p ><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="actualizarCita(<?php echo $citas['id_cita'] ?>)">Editar</a></p>
-	                    <p><a type="button" class="btn btn-primary btn-table" title="Eliminar" onclick="eliminarCita(<?php echo $citas['id_cita'] ?>, '<?php echo $citas['fechacita'] ?>')">Eliminar</a></p>
-	                    <p><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="consultarCita(<?php echo $citas['id_cita'] ?>)">Detalle</a></p>
+	                    <p ><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="actualizarCita(<?php echo $citas['id'] ?>)">Editar</a></p>
+	                    <p><a type="button" class="btn btn-primary btn-table" title="Eliminar" onclick="eliminarCita(<?php echo $citas['id'] ?>, '<?php echo $citas['fechacita'] ?>')">Eliminar</a></p>
+	                    <p><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="consultarCita(<?php echo $citas['id'] ?>)">Detalle</a></p>
 	                  </td>
                 </tr>
                 <?php } ?>
@@ -117,4 +117,4 @@ if (isset($_POST['id'])) {
     </div>  
   </div>
 </section>
-<script src="../sistema/mobiliario/mobiliario.js"></script>
+<script src="../sistema/citas/citas.js"></script>

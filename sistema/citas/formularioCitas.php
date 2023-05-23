@@ -4,8 +4,8 @@
 
 
   if (isset($_POST['id'])) {
-    $obj_Citas = new Citas();
-    $citas = $obj_Mobiliario->buscarCitas($_POST['id']);
+    $obj_Cita = new Citas();
+    $citas = $obj_Cita->buscarCita($_POST['id']);
   }
 
 ?>
@@ -70,3 +70,4 @@
       </form>
       </div>
     </section>
+    <script src="../sistema/citas/citas.js"></script>
