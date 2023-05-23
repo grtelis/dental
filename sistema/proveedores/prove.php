@@ -63,3 +63,4 @@
         </div>
     </div>
 </section>
+<script src="../sistema/proveedores/proveedores.js"></script>
