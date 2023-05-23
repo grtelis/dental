@@ -1,80 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Tabla de proveedores de mobiliario</title>
-</head>
-<body>
-    <main>
-        <!-- Tabla con bootstrap de proveedores de mobiliario -->
-        <table class="table table-striped">
-            <thead>
+<?php
+  include('../../clases/BD.php');
+  include('../../clases/Mobiliario.php');
+
+  $obj_mobiliario = new Mobiliario();
+  $total_registros  = $obj_mobiliario->totalRegistros();
+  $total= $total_registros->total;
+  $resultados_por_pagina = 5;
+
+
+
+  // Calcula el número total de páginas
+$total_paginas = ceil($total / $resultados_por_pagina);
+
+if (isset($_POST['id'])) {
+  $desplazamiento = ($_POST['id'] - 1) * $resultados_por_pagina;
+    $arr_mobiliario = $obj_mobiliario->buscarTodos($desplazamiento, $resultados_por_pagina);
+}else{
+   $arr_mobiliario = $obj_mobiliario->buscarTodos(0,5);
+}
+
+?>
+
+ <section id="tabla-mobiliario" class="mt-5 mb-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <h3>Muebles Dentales</h3>
+      </div>
+
+      <div class="col center">
+        <button type="button" class="btn btn-primary" id="btn-registro-mobiliario">Agregar Mobiliario</button>
+      </div>
+      
+      <div class="table-responsive">
+          <table class="table">
+              <thead class="table-light">
                 <tr>
-                    <th scope="col">Nombre del proveedor</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Cantidad en stock</th>
-                    <th scope="col">Acciones</th>
+                  <td><b>#Id</b></td>
+                  <td><b>Nombre del proveedor</b></td>
+                  <td><b>Descripción</b></td>
+                  <td><b>Precio</b></td>
+                  <td><b>Cantidad en stock</b></td>
                 </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
+
+              	<?php foreach ($arr_mobiliario as $mobiliario) { ?>
                 <tr>
-                    <td>Acme Furniture</td>
-                    <td>Silla ejecutiva</td>
-                    <td>$300</td>
-                    <td>10</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
+	                 <td><?php echo $mobiliario['id']; ?></td>
+	                 <td><?php echo $mobiliario['proveedormob']; ?></td>
+	                 <td><?php echo $mobiliario['productomob']; ?></td>
+	                 <td><?php echo $mobiliario['preciomob']; ?></td>
+	                 <td><?php echo $mobiliario['stockmob']; ?></td>
+	                  <td>
+	                    <p ><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="actualizarMobiliario(<?php echo $mobiliario['id'] ?>)">Editar</a></p>
+	                    <p><a type="button" class="btn btn-primary btn-table" title="Eliminar" onclick="eliminarMobiliario(<?php echo $mobiliario['id'] ?>, '<?php echo $mobiliario['productomob'] ?>')">Eliminar</a></p>
+	                    <p><a type="button" class="btn btn-primary btn-table" title="Actualizar" onclick="consultarMobiliario(<?php echo $mobiliario['id'] ?>)">Detalle</a></p>
+	                  </td>
                 </tr>
-                <tr>
-                    <td>Broyhill Furniture</td>
-                    <td>Mesa de centro</td>
-                    <td>$500</td>
-                    <td>5</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ashley Furniture</td>
-                    <td>Reclinable</td>
-                    <td>$700</td>
-                    <td>2</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Rooms To Go</td>
-                    <td>Sofá seccional</td>
-                    <td>$1200</td>
-                    <td>3</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Wayfair</td>
-                    <td>Estantería</td>
-                    <td>$200</td>
-                    <td>8</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                <button type="button" class="btn btn-primary" id="agregar-mobiliario">Agregar</button>
-            </tbody>
-        </table>
-    </main>
-    <script src="../sistema/mobiliario/mobiliario.js"></script>
-</body>
-</html>
+                <?php } ?>
+              </tbody>
+
+     
+          </table>
+          <?php
+         
+         echo '<nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item';
+          if (!isset($_POST['id']) || $_POST['id'] == 1) {
+  
+            echo  ' disabled';
+  
+          }
+
+          $anterior = !isset($_POST['id']) ? 1 : $_POST['id'] - 1;
+
+          echo '">
+                  <a class="page-link" role="button" onclick="consultarmobiliarios(' . $anterior . ')" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>';
+
+         for ($i = 1; $i <= $total_paginas; $i++) {
+          
+          echo '<li id="'.$i.'" class="page-item';
+
+          if ((!isset($_POST['id']) && $i == 1) || $i == $_POST['id']) {
+
+            echo ' active';
+
+         } 
+
+         echo '"><a class="page-link" role="button" onclick="consultarmobiliarios(' . $i . ')">' . $i . '</a></li>';
+
+        }
+
+        echo '<li class="page-item';
+        
+        
+        if ($total_paginas == 1 || $_POST['id'] == $total_paginas) {
+
+          echo ' disabled';
+        }
+        
+        $siguiente = !isset($_POST['id']) ? 2 : $_POST['id'] + 1;
+
+        echo '">
+        <a class="page-link" role="button" onclick="consultarmobiliarios(' . $siguiente . ')" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      </ul></nav>';
+  ?>
+      </div>
+    </div>  
+  </div>
+</section>
+<script src="../sistema/mobiliarios/mobiliarios.js"></script>
