@@ -24,7 +24,7 @@
           <div class="col-12">
             <div class="mb-3">
             <label for="precio" class="form-label">Precio</label>
-            <input type="text" id="precio" name="precio" class="form-control" value="<?php echo isset($proveedor)?$proveedor->precio:"";?>">
+            <input type="number" id="precio" name="precio" class="form-control" value="<?php echo isset($proveedor)?$proveedor->precio:"";?>">
             </div>
           </div>
 
@@ -33,7 +33,7 @@
           <div class="col-12">
             <div class="mb-3">
                <div class="form-check">
-                <input class="form-check-input" type="radio" name="nacionalidad" id="nacional" <?php if(isset($proveedor)) { if ($proveedor->nacionalidad == "nacional") { ?> checked <?php }}?> value="nacional">
+                <input class="form-check-input" type="radio" name="nacionalidad" id="nacional" value="nacional" <?php if(isset($proveedor)) { if ($proveedor->nacionalidad == "nacional") { ?> checked <?php }}?>>
                 <label class="form-check-label" for="nacionalidad">
                   Nacional
                 </label>
@@ -58,8 +58,15 @@
 
           <div class="col-12">
             <div class="mb-3">
-              <label for="ubicacio" class="form-label">Ubicación</label>
-              <input type="text" class="form-control" id="ubicacio" name="ubicacio" value="<?php echo isset($proveedor)?$proveedor->ubicacion:"";?>">
+                <label for="correoElectronico" class="form-label">Correo electrónico</label>
+                <input type="tel" class="form-control" id="correoElectronico" name="correoElectronico" placeholder="example@email.com" value="<?php echo isset($proveedor)?$proveedor->correo_electronico:"";?>">
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mb-3">
+              <label for="ubicacion" class="form-label">Ubicación</label>
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion" value="<?php echo isset($proveedor)?$proveedor->ubicacion:"";?>">
             </div>
           </div>
 

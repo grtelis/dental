@@ -25,7 +25,8 @@
    $numeroTelefono = $_POST['numeroTelefono'];
    $correoElectronico = $_POST['correoElectronico'];
    $ubicacion = $_POST['ubicacion'];
-   $obj_Proveedor->modificarProveedor($proveDescrip, $precio, $nacionalidad, $numeroTelefono, $correoElectronico, $ubicacion);
+   $idProveedor = $_POST['id'];
+   $obj_Proveedor->modificarProveedor($idProveedor, $proveDescrip, $precio, $nacionalidad, $numeroTelefono, $correoElectronico, $ubicacion);
     echo 1;
   }elseif($_POST['dml'] == 'delete')
   {

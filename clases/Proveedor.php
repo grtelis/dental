@@ -47,9 +47,9 @@
         $SQL_Modificar_Proveedor = 
         "UPDATE proveedor
           SET prove_descrip = '$proveedor', 
-          precio = '$precio', 
-          nacionalidad = $nacionalidad, 
-          numero_telefono = $numero_telefono, 
+          precio = $precio, 
+          nacionalidad = '$nacionalidad', 
+          numero_telefono = '$numero_telefono', 
           correo_electronico = '$correo_electronico', 
           ubicacion = '$ubicacion'
           WHERE prove_id_prove = $idProve;

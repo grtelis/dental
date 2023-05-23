@@ -5,7 +5,7 @@
   include('../../clases/Articulo.php');
 
   $obj_Proveedor = new Proveedor();
-  $arr_proveedor = $obj_Proveedor->buscarTodos();
+  $arr_proveedor = $obj_Proveedor->buscarTodos(0,5);
 
   $obj_Material = new Material();
   $arr_material = $obj_Material->buscarTodos();
@@ -81,7 +81,7 @@
           <div class="col-12">
             <div class="mb-3">
                <div class="form-check">
-                <input class="form-check-input" type="radio" name="nacionalidad" id="nacional" <?php if(isset($articulo)) { if ($articulo->arti_nacionalidad == "nacional") { ?> checked <?php }}?> value="nacional">
+                <input class="form-check-input" type="radio" name="nacionalidad" id="nacional" value="nacional" <?php if(isset($articulo)) { if ($articulo->arti_nacionalidad == "nacional") { ?> checked <?php }}?>>
                 <label class="form-check-label" for="nacionalidad">
                   Nacional
                 </label>
