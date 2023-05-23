@@ -17,7 +17,7 @@
 
 			$this->servidor = "localhost";
 			$this->usuario  = "postgres";
-			$this->password = "postgres";
+			$this->password = "TareaEscuela40";
 			$this->puerto   = "5432";
 			$this->bd       = ($strBD != "") ? $strBD : "dental";
 			$this->cadena_conexion = "host=". $this->servidor ." port=". $this->puerto ." dbname=". $this->bd ." user=". $this->usuario ." password=". $this->password;
