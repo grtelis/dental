@@ -75,7 +75,7 @@ class Mobiliario
         $bd->abrirBD();
         $transaccion_1 = new Transaccion($bd->conexion);
         $transaccion_1->enviarQuery($SQL_Bus_Mobiliario);
-        $obj_Mobiliario = $transaccion_1->traerObjeto(0);
+        $obj_mobiliario = $transaccion_1->traerObjeto(0);
         $bd->cerrarBD();
         return ($transaccion_1->traerObjeto(0));
     }
@@ -89,7 +89,7 @@ class Mobiliario
         $bd->abrirBD();
         $transaccion_1 = new Transaccion($bd->conexion);
         $transaccion_1->enviarQuery($SQL_Bus_Mobiliario);
-        $obj_Mobiliario = $transaccion_1->traerObjeto(0);
+        $obj_mobiliario = $transaccion_1->traerObjeto(0);
         $bd->cerrarBD();
         return ($transaccion_1->traerObjeto(0));
     }

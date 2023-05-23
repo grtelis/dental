@@ -9,8 +9,8 @@
 
 
   if (isset($_POST['id'])) {
-    $obj_Mobiliario = new Mobiliario();
-    $mobiliario = $obj_Mobiliario->buscarMobiliario($_POST['id']);
+    $obj_mobiliario = new Mobiliario();
+    $mobiliario = $obj_mobiliario->buscarMobiliario($_POST['id']);
   }
 
 ?>
