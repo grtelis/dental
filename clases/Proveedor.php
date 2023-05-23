@@ -45,7 +45,7 @@
     function modificarProveedor($idProve, $proveedor, $precio, $nacionalidad, $numero_telefono, $correo_electronico, $ubicacion)
     {
         $SQL_Modificar_Proveedor = 
-        "UPDATE proveedores
+        "UPDATE proveedor
           SET prove_descrip = '$proveedor', 
           precio = '$precio', 
           nacionalidad = $nacionalidad, 
@@ -65,7 +65,7 @@
     function totalRegistros(){
 
       $SQL_Bus_Proveedores = 
-      "SELECT COUNT(prove_id_prove) AS total FROM proveedores;";
+      "SELECT COUNT(prove_id_prove) AS total FROM proveedor;";
   
       $bd = new BD();
       $bd->abrirBD();
