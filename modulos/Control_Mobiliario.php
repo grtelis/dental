@@ -20,7 +20,8 @@
     $precioMob = $_POST['precioMob'];
     $stockMob = $_POST['stockMob'];
     $proveedorMob = $_POST['proveedorMob'];
-    $obj_Mobiliario->modificarMobiliario($productoMob, $precioMob, $stockMob, $proveedorMob);
+    $mobiliario = $_POST['id'];
+    $obj_Mobiliario->modificarMobiliario($mobiliario, $productoMob, $precioMob, $stockMob, $proveedorMob);
     echo 1;
   }elseif($_POST['dml'] == 'delete')
   {

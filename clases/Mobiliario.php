@@ -2,11 +2,11 @@
 
 class Mobiliario
 {
-    function agregarMobiliario($proveedorMob, $productoMob, $precioMob, $stockMob)
+    function agregarMobiliario($productoMob, $precioMob, $stockMob, $proveedorMob)
     {
         $SQL_Ins_Mobiliario =
             "INSERT INTO Mobiliario(productomob, preciomob, stockmob, proveedormob)
-         VALUES ('$productoMob', '$precioMob', '$stockMob', '$proveedorMob')";
+         VALUES ('$productoMob', $precioMob, $stockMob, '$proveedorMob')";
 
         $bd = new BD();
         $bd->abrirBD();
@@ -44,16 +44,16 @@ class Mobiliario
         return ($transaccion_1->traerRegistros());
     }
 
-    function modificarMobiliario($productoMob, $precioMob, $stockMob, $proveedorMob)
+    function modificarMobiliario($mobiliario, $productoMob, $precioMob, $stockMob, $proveedorMob)
     {
         $SQL_Act_Mobiliario =
             "UPDATE Mobiliario
           SET 
-          productomob = $productoMob,
+          productomob = '$productoMob',
           preciomob = $precioMob,
-          stockmob = $stockMob,
+          stockmob = '$stockMob',
           proveedormob = '$proveedorMob'
-          WHERE id = $id;
+          WHERE id = $mobiliario;
         ";
 
         $bd = new BD();

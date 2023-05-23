@@ -23,11 +23,19 @@
         <h3 class="mb-4">Registrar Mobiliario</h3>
 
 
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="proveedorMob" class="form-label">Proveedor</label>
+            <input type="text" id="proveedorMob" name="proveedorMob">
+          </div>
+        </div>
+        </div>
+
+
               <div class="col-12">
                 <div class="mb-3">
                   <label for="productoMob" class="form-label">Descripción producto</label>
                   <textarea class="form-control" id="productoMob" name="productoMob" rows="3" value="<?php echo isset($mobiliario)?$mobiliario->productomob:'';?>"><?php echo isset($mobiliario)?$mobiliario->productomob:'';?></textarea>
-                  <!--<input type="text" class="form-control" id="productoMob" aria-describedby="emailHelp">-->
                 </div>
               </div>
 
@@ -45,15 +53,6 @@
                 </div>
             </div>
 
-            <div class="col-12">
-          <div class="mb-3">
-            <label for="proveedorMob" class="form-label">Proveedor</label>
-            <input type="text" id="proveedorMob" name="proveedorMob">
-          </div>
-        </div>
-        </div>
-
-          
 
             <div class="col-12">
           <div class="mb-3">
