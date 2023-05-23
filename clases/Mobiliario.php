@@ -53,7 +53,7 @@ class Mobiliario
           preciomob = $precioMob,
           stockmob = $stockMob,
           proveedormob = '$proveedorMob'
-          WHERE id = $mobiliario;
+          WHERE id = $id;
         ";
 
         $bd = new BD();
