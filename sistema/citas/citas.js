@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $("#btn-registro-citas").click(function () {
-    $("#container").load("../sistema/citas/citas.php");
+    $("#container").load("../sistema/citas/formularioCitas.php");
     $("html, body").animate({ scrollTop: 0 }, 0);
   });
 });
@@ -11,32 +11,32 @@ function validarFormularioEvento() {
   if ($("#nombrePa").val() == "") {
     $("html, body").animate({ scrollTop: 0 }, "slow");
     document.getElementById("nombrePa").focus();
-    alertify.error("Debe ingresar el nombre del proveedor");
+    alertify.error("Debe ingresar el nombre del paciente");
     return false;
   }
 
 
-   if ($("#productoMob").val() == "") {
+   if ($("#fechacita").val() == "") {
     $("html, body").animate({ scrollTop: 0 }, "slow");
-    document.getElementById("productoMob").focus();
-    alertify.error("Debe ingresar la descripción");
+    document.getElementById("fechacita").focus();
+    alertify.error("Debe ingresar la fecha de la cita");
     return false;
   }
 
 
 
-  if ($("#precioMob").val() == 0) {
+  if ($("#horaCita").val() == 0) {
     alertify.error("Debe indicar el precio");
     $("html, body").animate({ scrollTop: 200 }, "slow");
-    document.getElementById("precioMob").focus();
+    document.getElementById("horaCita").focus();
     return false;
   }
 
 
-  if ($("#stockMob").val() == 0) {
-    alertify.error("Debe indicar el stock");
+  if ($("#motivoCita").val() == 0) {
+    alertify.error("Debe indicar el motivo de la cita");
     $("html, body").animate({ scrollTop: 200 }, "slow");
-    document.getElementById("stockMob").focus();
+    document.getElementById("motivoCita").focus();
     return false;
   }
   
@@ -45,14 +45,14 @@ function validarFormularioEvento() {
 
 
 // Registrar articlo
-$("#btn-agregar-mobiliario").click(function () {
+$("#btn-agregar-citas").click(function () {
 
 if (validarFormularioEvento()) {
-    var parametros = new FormData($("#form_mobiliario")[0]);
+    var parametros = new FormData($("#form_citas")[0]);
     console.log(parametros);
     $.ajax({
         data: parametros,
-        url: "../modulos/Control_Mobiliario.php",
+        url: "../modulos/Control_Citas.php",
         type: "POST",
         contentType: false,
         processData: false,
@@ -60,15 +60,15 @@ if (validarFormularioEvento()) {
         {
           console.log(response);
           if (response == 1) {
-            alertify.success("El registro del mobiliario se actualizó correctamente");
+            alertify.success("El registro de la cita se actualizó correctamente");
             setTimeout(function () {
               $("html, body").animate({ scrollTop: 0 }, 0);
               $("#container").load(
-                "../sistema/mobiliario/mobiliario.php"
+                "../sistema/citas/citas.php"
               );
             }, 0);
           } else {
-            alertify.error("Hubo un problema al registrar los datos del evento");
+            alertify.error("Hubo un problema al registrar los datos de la cita");
           }
         }
     });
@@ -77,7 +77,7 @@ if (validarFormularioEvento()) {
 
 
 // Actualizar evento
-function actualizarMobiliario(id) {
+function actualizarCita(id) {
   var datos = {
     id: id,
     CRUD: 1,
@@ -86,7 +86,7 @@ function actualizarMobiliario(id) {
   $.ajax({
     data: datos,
     type: "POST",
-    url: "../sistema/mobiliario/formulario_mobiliario.php",
+    url: "../sistema/citas/formularioCitas.php",
     success: function (data) {
       $("html, body").animate({ scrollTop: 0 }, 0);
       $("#container").html(data);
@@ -95,27 +95,27 @@ function actualizarMobiliario(id) {
 }
 
 $(document).ready(function () {
-  $("#btn-actualizar-mobiliario").click(function () {
+  $("#btn-actualizar-citas").click(function () {
     
-      var parametros = new FormData($("#form_mobiliario")[0]);
+      var parametros = new FormData($("#form_citas")[0]);
       $.ajax({
         data: parametros,
-        url: "../modulos/Control_Mobiliario.php",
+        url: "../modulos/Control_Citas.php",
         type: "POST",
         contentType: false,
         processData: false,
         success: function (respuesta) {
           console.log(respuesta);
           if (respuesta == 1) {
-            alertify.success("El registro del mobiliario se actualizó correctamente.");
+            alertify.success("El registro de la cita se actualizó correctamente.");
             setTimeout(function () {
               $("html, body").animate({ scrollTop: 0 }, 0);
               $("#container").load(
-                "../sistema/mobiliario/mobiliario.php"
+                "../sistema/citas/citas.php"
               );
             }, 0);
           } else {
-            alertify.error("Hubo un problema al actualizar los datos del mobiliario.");
+            alertify.error("Hubo un problema al actualizar los datos de la cita.");
           }
         },
       });
@@ -126,12 +126,12 @@ $(document).ready(function () {
 
 
 // Eliminar evento
-function eliminarMobiliario(id,mobiliario) {
+function eliminarCita(id,citas) {
   var mensaje = "¿Esta seguro de eliminar el mobiliario ";
-  mensaje = mensaje.concat(mobiliario.bold());
+  mensaje = mensaje.concat(citas.bold());
   mensaje = mensaje.concat("?");
 
-  var titulo = "Eliminar Mobiliario";
+  var titulo = "Eliminar Cita";
   alertify.confirm(
     titulo,
     mensaje,
@@ -144,19 +144,19 @@ function eliminarMobiliario(id,mobiliario) {
       $.ajax({
         data: datos,
         type: "POST",
-        url: "../modulos/Control_Mobiliario.php",
+        url: "../modulos/Control_Citas.php",
         success: function (respuesta) {
           console.log(respuesta);
           if (respuesta == 1) {
-            alertify.success("Se elimino de manera correcta el mobiliario");
+            alertify.success("Se elimino de manera correcta la cita");
             setTimeout(function () {
               $("html, body").animate({ scrollTop: 0 }, 0);
               $("#container").load(
-                "../sistema/mobiliario/mobiliario.php"
+                "../sistema/citas/citas.php"
               );
             }, 100);
           } else {
-            alertify.error("Hubo un problema al eliminar el mobiliario");
+            alertify.error("Hubo un problema al eliminar la cita");
           }
         },
       });
@@ -169,7 +169,7 @@ function eliminarMobiliario(id,mobiliario) {
 
 
 // Consultar evento
-function consultarMobiliario(id) {
+function consultarCita(id) {
   var datos = {
     id: id,
     CRUD: 0,
@@ -178,7 +178,7 @@ function consultarMobiliario(id) {
   $.ajax({
     data: datos,
     type: "POST",
-    url: "../sistema/mobiliario/formulario_mobiliario.php",
+    url: "../sistema/citas/formularioCitas.php",
     success: function (data) {
       $("html, body").animate({ scrollTop: 0 }, 0);
       $("#container").html(data);
@@ -187,7 +187,7 @@ function consultarMobiliario(id) {
 }
 
 
-function consultarMobiliario(id) {
+function consultarCita(id) {
   var datos = {
     id: id,
     CRUD: 0,
@@ -196,7 +196,7 @@ function consultarMobiliario(id) {
   $.ajax({
     data: datos,
     type: "POST",
-    url: "../sistema/mobiliario/mobiliario.php",
+    url: "../sistema/citas/citas.php",
     success: function (data) {
       $("html, body").animate({ scrollTop: 0 }, 0);
       $("#container").html(data);

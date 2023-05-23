@@ -20,14 +20,14 @@
     $fechaCita = $_POST['fechaCita'];
     $horaCita = $_POST['horaCita'];
     $motivoCita = $_POST['motivoCita'];
-    $citas = $_POST['id_cita'];//Aquí puede haber un error
-    $obj_Cita->modificarCita($nombrePa, $fechaCita, $horaCita, $motivoCita);
+    $citas = $_POST['id'];
+    $obj_Cita->modificarCita($citas, $nombrePa, $fechaCita, $horaCita, $motivoCita);
     echo 1;
   }elseif($_POST['dml'] == 'delete')
   {
-    $citas = $_POST['id_cita'];//Aquí puede haber un error
+    $citas = $_POST['id'];
 
-    $obj_Mobiliario->eliminarCita($id_cita);//Aquí puede haber un error
+    $obj_Cita->eliminarCita($citas);
     echo 1;
   }
 
