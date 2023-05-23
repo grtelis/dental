@@ -24,23 +24,6 @@
 
 
               <div class="col-12">
-          <div class="mb-3">
-            <label for="proveedorMob" class="form-label">Proveedor</label>
-            <select class="form-select" aria-label="Default select example" id="proveedorMob" name="proveedorMob">
-              <option selected value="0">Selecciona</option>
-              <?php foreach ($arr_proveedor as $proveedor) { ?>
-                      <option value="<?php echo $mobiliario['prove_id_prove']; ?>" <?php if(isset($mobiliario)) { if ($mobiliario->prove_id_prove == $proveedor['prove_id_prove']) { ?> selected <?php } }?>>
-              <?php echo $proveedor['prove_descrip']; ?>
-                      </option>
-
-               <?php } ?>
-            </select>
-          </div>
-        </div>
-        </div>
-
-
-              <div class="col-12">
                 <div class="mb-3">
                   <label for="productoMob" class="form-label">Descripción producto</label>
                   <textarea class="form-control" id="productoMob" name="productoMob" rows="3" value="<?php echo isset($mobiliario)?$mobiliario->productomob:'';?>"><?php echo isset($mobiliario)?$mobiliario->productomob:'';?></textarea>
@@ -61,6 +44,16 @@
                   <input type="number" class="form-control" id="stockMob" name="stockMob" value="<?php echo isset($mobiliario)?$mobiliario->stockmob:"";?>">>
                 </div>
             </div>
+
+            <div class="col-12">
+          <div class="mb-3">
+            <label for="proveedorMob" class="form-label">Proveedor</label>
+            <input type="text" id="proveedorMob" name="proveedorMob">
+          </div>
+        </div>
+        </div>
+
+          
 
             <div class="col-12">
           <div class="mb-3">

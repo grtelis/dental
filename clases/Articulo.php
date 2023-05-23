@@ -52,7 +52,7 @@
     }
 
 
-    function modificarArticulo($articulo,$nombProd, $descripcion, $tipoMaterial, $proveedor, $fecha, $nacionalidad)
+    function modificarArticulo($articulo, $nombProd, $descripcion, $tipoMaterial, $proveedor, $fecha, $nacionalidad)
     {
         $SQL_Act_Articulo = 
         "UPDATE articulos

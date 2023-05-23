@@ -37,10 +37,10 @@ if (isset($_POST['id'])) {
               <thead class="table-light">
                 <tr>
                   <td><b>#Id</b></td>
-                  <td><b>Nombre del proveedor</b></td>
                   <td><b>Descripción</b></td>
                   <td><b>Precio</b></td>
                   <td><b>Cantidad en stock</b></td>
+                  <td><b>Nombre del proveedor</b></td>
                 </tr>
               </thead>
               <tbody>

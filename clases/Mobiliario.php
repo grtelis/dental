@@ -6,7 +6,7 @@ class Mobiliario
     {
         $SQL_Ins_Mobiliario =
             "INSERT INTO Mobiliario(productomob, preciomob, stockmob, proveedormob)
-         VALUES ('$productoMob', '$precioMob', '$stockMob', $proveedorMob)";
+         VALUES ('$productoMob', '$precioMob', '$stockMob', '$proveedorMob')";
 
         $bd = new BD();
         $bd->abrirBD();
@@ -15,7 +15,7 @@ class Mobiliario
         $bd->cerrarBD();
     }
 
-    function eliminarMobiliario($mobiliario)
+    function eliminarMobiliario($id)
     {
         $SQL_Eli_Mobiliario =
             " DELETE FROM Mobiliario
@@ -44,15 +44,16 @@ class Mobiliario
         return ($transaccion_1->traerRegistros());
     }
 
-    function modificarMobiliario($proveedorMob, $productoMob, $precioMob, $stockMob)
+    function modificarMobiliario($productoMob, $precioMob, $stockMob, $proveedorMob)
     {
         $SQL_Act_Mobiliario =
             "UPDATE Mobiliario
-          SET proveedormob = '$proveedorMob',
+          SET 
           productomob = $productoMob,
           preciomob = $precioMob,
-          stockmob = $stockMob
-          WHERE id = $id;
+          stockmob = $stockMob,
+          proveedormob = '$proveedorMob'
+          WHERE id = $mobiliario;
         ";
 
         $bd = new BD();
@@ -65,9 +66,10 @@ class Mobiliario
     function buscarMobiliario($id)
     {
         $SQL_Bus_Mobiliario =
-            "SELECT id, productomob, preciomob, stockmob, proveedormob, prove_id_prove
-          FROM Mobiliario, proveedor WHERE prove_id_prove = proveedormob AND id = $id;
-      ";
+
+          "SELECT id, productomob, preciomob, stockmob, proveedormob
+          FROM Mobiliario WHERE id = $id;
+          ";
 
         $bd = new BD();
         $bd->abrirBD();
