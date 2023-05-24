@@ -14,7 +14,7 @@ $total_paginas = ceil($total / $resultados_por_pagina);
 
 if (isset($_POST['id'])) {
   $desplazamiento = ($_POST['id'] - 1) * $resultados_por_pagina;
-    $arr_articulo = $obj_Articulo->buscarTodos($desplazamiento, $resultados_por_pagina);
+    $arr_articulo = $obj_Articulo->buscarTodos(6, 5);
 }else{
    $arr_articulo = $obj_Articulo->buscarTodos(0,5);
 }

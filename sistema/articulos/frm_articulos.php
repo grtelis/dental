@@ -8,7 +8,7 @@
   $arr_proveedor = $obj_Proveedor->buscarTodos(0,5);
 
   $obj_Material = new Material();
-  $arr_material = $obj_Material->buscarTodos();
+  $arr_material = $obj_Material->buscarTodos(0, 5);
 
   if (isset($_POST['id'])) {
     $obj_Articulo = new Articulo();

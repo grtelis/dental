@@ -73,7 +73,7 @@
           $anterior = !isset($_POST['id']) ? 1 : $_POST['id'] - 1;
 
           echo '">
-                  <a class="page-link" role="button" onclick="consultarArticulos(' . $anterior . ')" aria-label="Previous">
+                  <a class="page-link" role="button" onclick="consultarProveedores(' . $anterior . ')" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>';
@@ -88,7 +88,7 @@
 
          } 
 
-         echo '"><a class="page-link" role="button" onclick="consultarArticulos(' . $i . ')">' . $i . '</a></li>';
+         echo '"><a class="page-link" role="button" onclick="consultarProveedores(' . $i . ')">' . $i . '</a></li>';
 
         }
 
@@ -103,7 +103,7 @@
         $siguiente = !isset($_POST['id']) ? 2 : $_POST['id'] + 1;
 
         echo '">
-        <a class="page-link" role="button" onclick="consultarArticulos(' . $siguiente . ')" aria-label="Next">
+        <a class="page-link" role="button" onclick="consultarProveedores(' . $siguiente . ')" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

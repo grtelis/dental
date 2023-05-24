@@ -187,7 +187,7 @@ function consultarCita(id) {
 }
 
 
-function consultarCita(id) {
+function consultarCitas(id) {
   var datos = {
     id: id,
     CRUD: 0,

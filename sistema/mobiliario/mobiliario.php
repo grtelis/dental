@@ -77,7 +77,7 @@ if (isset($_POST['id'])) {
           $anterior = !isset($_POST['id']) ? 1 : $_POST['id'] - 1;
 
           echo '">
-                  <a class="page-link" role="button" onclick="consultarmobiliarios(' . $anterior . ')" aria-label="Previous">
+                  <a class="page-link" role="button" onclick="consultarMobiliario(' . $anterior . ')" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>';
@@ -92,7 +92,7 @@ if (isset($_POST['id'])) {
 
          } 
 
-         echo '"><a class="page-link" role="button" onclick="consultarmobiliarios(' . $i . ')">' . $i . '</a></li>';
+         echo '"><a class="page-link" role="button" onclick="consultarMobiliario(' . $i . ')">' . $i . '</a></li>';
 
         }
 
@@ -107,7 +107,7 @@ if (isset($_POST['id'])) {
         $siguiente = !isset($_POST['id']) ? 2 : $_POST['id'] + 1;
 
         echo '">
-        <a class="page-link" role="button" onclick="consultarmobiliarios(' . $siguiente . ')" aria-label="Next">
+        <a class="page-link" role="button" onclick="consultarMobiliario(' . $siguiente . ')" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

@@ -5,7 +5,7 @@
   include('../../clases/Mobiliario.php');
 
   $obj_Proveedor = new Proveedor();
-  $arr_proveedor = $obj_Proveedor->buscarTodos();
+  $arr_proveedor = $obj_Proveedor->buscarTodos(0, 5);
 
 
   if (isset($_POST['id'])) {

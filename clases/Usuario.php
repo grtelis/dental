@@ -193,5 +193,19 @@
 
 			return $contra;
 		}
+
+		function totalRegistros(){
+
+			$SQL_Bus_Articulos = 
+			"SELECT COUNT(usua_id_usua) AS total FROM usuarios;";
+		
+			$bd = new BD();
+			$bd->abrirBD();
+			$transaccion_1 = new Transaccion($bd->conexion);
+			$transaccion_1->enviarQuery($SQL_Bus_Articulos);
+			$obj_Curso = $transaccion_1->traerObjeto(0);
+			$bd->cerrarBD();
+			return ($transaccion_1->traerObjeto(0));
+		  }
 	}
 ?>

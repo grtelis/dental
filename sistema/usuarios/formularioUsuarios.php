@@ -14,41 +14,68 @@
 
       <section id="formulario" class="formA mt-5 mb-5">
         <div class="container">
-          <form class="mt-4 mb-4">
+          <form class="mt-4 mb-4" id="form_usuario">
             <div class="row">
               <h3 class="mb-4">Registro de Usuarios</h3>
               
               <div class="col-12">
+                <div class="mb-3">Rol</label>
+                  <input type="number" class="form-control" id="rol">
+                </div>
+              </div>
+
+              <div class="col-12">
                 <div class="mb-3">
-                  <label for="nombreUsuario" class="form-label">Nombre del usuario</label>
-                  <input type="email" class="form-control" id="nombreUsuario" aria-describedby="emailHelp">
+                  <label for="pers" class="form-label">Persona</label>
+                  <input type="number" class="form-control" id="pers">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="mb-3">
+                  <label for="preg" class="form-label">Pregunta</label>
+                  <input type="number" class="form-control" id="preg">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre del usuario</label>
+                  <input type="text" class="form-control" id="nombre">
                 </div>
               </div>
 
 
               <div class="col-12">
                 <div class="mb-3">
-                    <label for="emailUsuario" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="emailUsuario" aria-describedby="emailHelp" placeholder="email">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="text" class="form-control" id="contrasena">
                 </div>
               </div>
-
-
 
               <div class="col-12">
                 <div class="mb-3">
-                    <label for="telUsario" class="form-label">Numéro teléfonico</label>
-                    <input type="tel" class="form-control" id="telUsario" aria-describedby="emailHelp" placeholder="(+52)">
+                  <label for="respuesta" class="form-label">Respuesta</label>
+                  <input type="text" class="form-control" id="respuesta">
                 </div>
               </div>
-
 
             <div class="col-12">
               <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <?php if (isset($_POST['CRUD'])) { ?>
+                <?php if ($_POST['CRUD'] == 1) { ?>
+                  <button id="btn-actualizar-usuario" type="button" class="btn btn-success btn-footer">Actualizar</button> 
+                  <input type="hidden" name="dml" value="update"/>
+                  <input type="hidden" name="id" value="<?php echo $_POST['id']; ?>"/>              
+                <?php } ?>
+                <?php }else{ ?>
+                  <button type="button" class="btn btn-primary" id="btn-agregar-usuario">Enviar</button>
+                  <input type="hidden" name="dml" value="insert"/>
+                  <?php } ?>
               </div>
             </div>
 
+            
             </div>
           </form>
         </div>
