@@ -39,7 +39,13 @@ function validarFormularioEvento() {
     document.getElementById("proveedor").focus();
     return false;
   }
-
+  
+  if (!document.querySelector('input[name="nacionalidad"]:checked')) {
+    alertify.error("Debe seleccionar una nacionalidad");
+    $("html, body").animate({ scrollTop: 200 }, "slow");
+    document.querySelector('input[name="nacionalidad"]').focus();
+    return false;
+  }
 
   if ($("#fecha").val() == "") {
     $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -155,7 +161,7 @@ function eliminarArticulo(id,articulo) {
         success: function (respuesta) {
           console.log(respuesta);
           if (respuesta == 1) {
-            alertify.success("Se elimino de manera correcta el articulo");
+            alertify.success("Se eliminó de manera correcta el artículo");
             setTimeout(function () {
               $("html, body").animate({ scrollTop: 0 }, 0);
               $("#container").load(
